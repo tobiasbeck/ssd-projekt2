@@ -1,13 +1,13 @@
-@(customerForm : play.data.Form[Customer])
+@(customerForm : play.data.Form[Customer], customer : Customer)
 @main("new customer"){
     <div class="row">
         <div class="col-xs-12">
-            <h1>Neuer Kunde</h1>
+            <h1>Kunden bearbeiten</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-xs-12">
-        @helper.form(action = routes.CustomerController.create()){
+        @helper.form(action = routes.CustomerController.update(customer.getId())){
             @helper.inputText(customerForm("firstname"),'_label ->"Vorname", 'class -> "form-control")
             @helper.inputText(customerForm("lastname"),'_label ->"Nachname", 'class -> "form-control")
             @helper.inputText(customerForm("company"),'_label ->"Firma", 'class -> "form-control")

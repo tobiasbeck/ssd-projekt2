@@ -23,7 +23,7 @@ POST     /user/:id/update            controllers.UserController.update(id: Long)
 GET     /customer                   controllers.CustomerController.list()
 POST    /customer/add               controllers.CustomerController.create()
 GET     /customer/:id/delete        controllers.CustomerController.delete(id: Long)
-PUT     /customer/:id               controllers.CustomerController.update(id: Long)
+POST     /customer/:id/update       controllers.CustomerController.update(id: Long)
 
 #PROJECT
 POST    /project/add                controllers.ProjectController.create()

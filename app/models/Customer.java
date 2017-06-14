@@ -13,7 +13,7 @@ import javax.persistence.Id;
 public class Customer extends Model {
     @Id
 
-    @Column
+    @Column(name="customer_id")
     public Long id;
     public String firstname;
     public String lastname;

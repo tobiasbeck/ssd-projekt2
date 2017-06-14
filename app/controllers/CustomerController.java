@@ -1,6 +1,7 @@
 package controllers;
 
 import models.Customer;
+import models.User;
 import play.data.Form;
 import play.data.FormFactory;
 import play.mvc.Controller;
@@ -41,8 +42,21 @@ public class CustomerController extends Controller {
     }
 
     public Result update(Long id){
-        return ok();
+        Form<Customer> form = formFactory.form(Customer.class);
+        Customer customer = form.bindFromRequest().get();
+        Customer oldCustomer = Customer.find.byId(id);
+        if(customer!=null) {
+            oldCustomer.setEmail(customer.getEmail());
+            oldCustomer.setFirstname(customer.getFirstname());
+            oldCustomer.setLastname(customer.getLastname());
+            oldCustomer.setCompany(customer.getCompany());
+            oldCustomer.setAddress(customer.getAddress());
+            oldCustomer.setPhone(customer.getPhone());
+        }
+        oldCustomer.update();
+        return redirect(routes.CustomerController.list());
+    }
 
 
     }
-}
+
