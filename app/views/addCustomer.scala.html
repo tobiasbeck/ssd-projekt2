@@ -1,0 +1,23 @@
+@(customerForm : play.data.Form[Customer])
+@main("new customer"){
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>New Customer</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+        @helper.form(action = routes.CustomerController.create()){
+            @helper.inputText(customerForm("firstname"),'_label ->"Vorname", 'class -> "form-control")
+            @helper.inputText(customerForm("lastname"),'_label ->"Nachname", 'class -> "form-control")
+            @helper.inputText(customerForm("company"),'_label ->"Firma", 'class -> "form-control")
+            @helper.inputText(customerForm("address"),'_label ->"Adresse", 'class -> "form-control")
+            @helper.inputText(customerForm("email"),'_label ->"E-Mail", 'class -> "form-control")
+            @helper.inputText(customerForm("phone"),'_label ->"Telefonnummer", 'class -> "form-control")
+
+            <button type="submit" class="btn btn-success" value="Save" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save </button>
+
+        }
+        </div>
+    </div>
+}

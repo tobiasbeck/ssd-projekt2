@@ -1,0 +1,54 @@
+@(customerList: List[Customer])
+
+@main("customer"){
+    <h1>Customer</h1>
+    @if(customerList.size() > 0) {
+
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Company</td>
+                            <td>Address</td>
+                            <td>Email</td>
+                            <td>Phone</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(customer <- customerList){
+                        <tr>
+                            <td>@customer.getFirstname() @customer.getLastname()</td>
+                            <td>@customer.getCompany()</td>
+                            <td>@customer.getAddress()</td>
+                            <td>@customer.getEmail()</td>
+                            <td>@customer.getPhone()</td>
+                            <td>
+                                <a href="@routes.CustomerController.update(customer.getId())" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="@routes.CustomerController.delete(customer.getId())" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a>
+
+                            </td>
+
+
+                        </tr>
+
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    } else{
+        <div class="warehouse-item">
+            No Customer
+        </div>
+    }
+
+    <div class="new-holder">
+        <a href="@routes.FormController.addCustomer()" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Customer</a>
+    </div>
+
+}
+

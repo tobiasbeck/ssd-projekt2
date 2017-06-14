@@ -1,0 +1,35 @@
+@(userList:List[User])
+@main("Alle Benutzer"){
+    <h1>Benutzer</h1>
+    @if(userList.size() > 0) {
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <td>ID</td>
+                            <td>E-Mail</td>
+                            <td>Name</td>
+                            <td>Position</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @for(user <- userList){
+                        <tr>
+                            <td>@user.getId()</td>
+                            <td>@user.getEmail()</td>
+                            <td>@user.getName()</td>
+                            <td>@user.getPosition()</td>
+                            <td>
+                                <a href="@routes.FormController.editUser(user.getId())" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="@routes.UserController.delete(user.getId())" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                            </td>
+
+
+
+                    }
+    }
+
+    <a href="@routes.FormController.addUser()" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Neuen Nutzer erstellen</a>
+}

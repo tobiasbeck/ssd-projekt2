@@ -1,0 +1,11 @@
+@(userForm:Form[User],user:User)
+@main("Benutzer bearbeiten"){
+    <h1>Benutzer bearbeiten</h1>
+    @helper.form(action = routes.UserController.update(user.getId())){
+        @helper.inputText(userForm("email"), 'id -> "email", '_label -> "E-Mail" ,'class -> "form-control")
+        
+        @helper.inputText(userForm("name"), 'id -> "name", '_label -> "Name", 'class -> "form-control")
+        @helper.inputText(userForm("position"), 'id -> "position", '_label -> "Unternehmensposition", 'class -> "form-control")
+        <button type="submit" class="btn btn-success">Änderungen speichern</button>
+    }
+}
