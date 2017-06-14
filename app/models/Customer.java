@@ -100,4 +100,8 @@ public class Customer extends Model {
     public void setId(Long id) {
         this.id = id;
     }
+
+    public String getFullName(){
+        return this.firstname+" "+this.lastname;
+    }
 }

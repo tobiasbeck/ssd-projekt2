@@ -6,6 +6,7 @@ import play.data.FormFactory;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.List;
 
 import static play.mvc.Results.*;
 
@@ -37,5 +38,31 @@ public class FormController {
     public Result addCustomer(){
         Form<Customer> customerForm = formFactory.form(Customer.class);
         return ok(views.html.addCustomer.render(customerForm));
+    }
+
+
+    public Result addProject(){
+        Form<Project> form = formFactory.form(Project.class);
+        List<Customer> customers = Customer.find.all();
+        List<User> users = User.find.all();
+
+        return ok(views.html.addProject.render(form,customers,users));
+    }
+
+    public Result editProject(Long id){
+        Project project = Project.find.byId(id);
+        Form<Project> projectForm = formFactory.form(Project.class);
+
+        project.setProjectLeadertmp(""+project.getProjectLeader().getId());
+        project.setBuyertmp(""+project.getBuyer().getId());
+
+        projectForm = projectForm.fill(project);
+
+
+
+        List<Customer> customers = Customer.find.all();
+        List<User> users = User.find.all();
+        //System.out.println(userForm.get());
+        return ok(views.html.editProject.render(projectForm,project,customers,users));
     }
 }

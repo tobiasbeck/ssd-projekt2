@@ -1,0 +1,34 @@
+@(form: Form[Project],customer: List[Customer], users:List[User])
+@main("neues Projekt"){
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Neues Projekt</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+        @helper.form(action = routes.ProjectController.create()){
+            @helper.inputText(form("name"),'_label ->"Projektname", 'class -> "form-control")
+            @helper.inputText(form("description"),'_label ->"Beschreibung", 'class -> "form-control")
+            @helper.select(
+                field = form("buyertmp"),
+                options = (customer.map(c => c.getId().toString() -> c.getFullName())),
+                'id -> "c",
+                '_label -> "Auftraggeber",
+                'class -> "form-control"
+            )
+            @helper.select(
+                field = form("projectLeadertmp"),
+                options = (users.map(u => u.getId().toString() -> u.getName())),
+                'id -> "u",
+                '_label -> "Projektleiter",
+                'class -> "form-control"
+            )
+
+
+            <button type="submit" class="btn btn-success" value="Save" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save </button>
+
+        }
+        </div>
+    </div>
+}
