@@ -56,7 +56,7 @@ public class ProjectController extends Controller {
         p.setProjectLeader(User.find.byId(Long.parseLong(newP.getProjectLeadertmp())));
 
         p.update();
-
+        System.out.println("UPDATE");
         return redirect(routes.ProjectController.list());
 
     }
