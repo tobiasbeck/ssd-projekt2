@@ -1,7 +1,7 @@
 @(customerList: List[Customer])
 
 @main("customer"){
-    <h1>Customer</h1>
+    <h1>Kunde</h1>
     @if(customerList.size() > 0) {
 
         <div class="row">
@@ -26,7 +26,7 @@
                             <td>@customer.getEmail()</td>
                             <td>@customer.getPhone()</td>
                             <td>
-                                <a href="@routes.CustomerController.update(customer.getId())" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                <a href="@routes.FormController.editCustomer(customer.getId())" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                                 <a href="@routes.CustomerController.delete(customer.getId())" class="btn btn-danger"><i class="fa fa-minus" aria-hidden="true"></i></a>
 
                             </td>
@@ -42,12 +42,12 @@
         </div>
     } else{
         <div class="warehouse-item">
-            No Customer
+            Kein Kunde vorhanden
         </div>
     }
 
     <div class="new-holder">
-        <a href="@routes.FormController.addCustomer()" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> New Customer</a>
+        <a href="@routes.FormController.addCustomer()" class="btn btn-success"><i class="fa fa-plus-square-o" aria-hidden="true"></i> Neuer Kunde</a>
     </div>
 
 }
