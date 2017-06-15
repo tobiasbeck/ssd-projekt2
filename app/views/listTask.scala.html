@@ -1,0 +1,39 @@
+@(project:Project,tasks: List[Task])
+    <h2>Aufgaben</h2>
+    @if(tasks.size() > 0) {
+        <div class="row">
+            <div class="col-xs-12">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+
+                            <td>Titel</td>
+                            <td>Beschreibung</td>
+                            <td>Bearbeiter</td>
+                            <td>Zeit (in Min)</td>
+                            <td>Status</td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(task <- tasks){
+                            <tr>
+                                <td>@task.getTitle()</td>
+                                <td>@task.getDescription()</td>
+                                <td>@if(task.getAssignedTo!=null){
+                                    @task.getAssignedTo().getName()
+                                } else {
+                                    <i>Keiner</i>
+                                }</td>
+                                <td>@task.getTime()</td>
+                                <td>@task.getStatus()</td>
+                                <td>
+                                    <a href="@routes.FormController.editTask(task.getId())" class="btn btn-default"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                                    <a href="@routes.TaskController.delete(task.getId())" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+
+
+
+                                }
+                    }
+    <a href="@routes.FormController.addTask(project.getId())" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i> Neue Aufgabe erstellen</a>

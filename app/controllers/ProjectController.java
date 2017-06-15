@@ -2,6 +2,7 @@ package controllers;
 
 import models.Customer;
 import models.Project;
+import models.Task;
 import models.User;
 import play.data.Form;
 import play.data.FormFactory;
@@ -59,5 +60,12 @@ public class ProjectController extends Controller {
         System.out.println("UPDATE");
         return redirect(routes.ProjectController.list());
 
+    }
+
+    public Result detail(Long id){
+        Project p = Project.find.byId(id);
+        List<Task> t = Task.find.where().eq("project_project_id",p.getId()).findList();
+
+        return ok(views.html.projectDashboard.render(p,t));
     }
 }

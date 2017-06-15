@@ -1,0 +1,7 @@
+@(project:Project,tasks:List[Task])
+@main("Projektdetail"){
+    <h1><strong>@project.getName()</strong></h1>
+    <p><strong>Projektleiter: </strong><i>@project.getProjectLeader().getName()</i> - <strong>Auftraggeber: </strong><i>@project.getBuyer().getFullName()</i></p>
+    <p>@project.getDescription()</p>
+    @listTask(project,tasks)
+}

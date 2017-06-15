@@ -30,6 +30,7 @@ create table task (
   time                          integer,
   assigned_to_user_id           bigint,
   project_project_id            bigint,
+  status                        varchar(255),
   constraint pk_task primary key (task_id)
 );
 

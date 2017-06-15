@@ -12,6 +12,8 @@ GET     /user/:id/edit              controllers.FormController.editUser(id: Long
 GET     /project/add                controllers.FormController.addProject()
 GET     /customer/:id/edit          controllers.FormController.editCustomer(id:Long)
 GET     /project/:id/edit           controllers.FormController.editProject(id:Long)
+GET     /project/:id/task           controllers.FormController.addTask(id:Long)
+GET     /task/:id/edit              controllers.FormController.editTask(id:Long)
 
 #USER
 POST    /user/add                   controllers.UserController.create()
@@ -30,12 +32,13 @@ POST     /customer/:id/update       controllers.CustomerController.update(id: Lo
 #PROJECT
 POST    /project/add                controllers.ProjectController.create()
 GET     /project                    controllers.ProjectController.list()
+GET     /project/:id                controllers.ProjectController.detail(id: Long)
 GET     /project/:id/delete         controllers.ProjectController.delete(id: Long)
 POST    /project/:id/update         controllers.ProjectController.update(id: Long)
 
 #TASK
-GET      /task                      controllers.TaskController.list()
-POST     /task/add                  controllers.TaskController.create()
+POST     /task/add/:id              controllers.TaskController.create(id:Long)
+POST     /task/:id/update           controllers.TaskController.update(id:Long)
 GET      /task/:id/delete           controllers.TaskController.delete(id:Long)
 
 # Map static resources from the /public folder to the /assets URL path

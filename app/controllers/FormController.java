@@ -6,6 +6,7 @@ import play.data.FormFactory;
 import play.mvc.Result;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 import java.util.List;
 
 import static play.mvc.Results.*;
@@ -64,5 +65,36 @@ public class FormController {
         List<User> users = User.find.all();
         //System.out.println(userForm.get());
         return ok(views.html.editProject.render(projectForm,project,customers,users));
+    }
+
+    public Result addTask(Long id){
+        Form<Task> form = formFactory.form(Task.class);
+        List<User> user = User.find.all();
+        Project project = Project.find.byId(id);
+
+        List<String> options = new ArrayList<String>();
+        options.add("to do");
+        options.add("in bearbeitung");
+        options.add("testing");
+        options.add("fertig");
+
+        return ok(views.html.addTask.render(form,project,user,options));
+    }
+
+    public Result editTask(Long id){
+        Task t = Task.find.byId(id);
+        t.setAssignedTotmp(""+t.getAssignedTo().getId());
+
+        Form<Task> form = formFactory.form(Task.class);
+        form = form.fill(t);
+
+        List<User> user = User.find.all();
+        List<String> options = new ArrayList<String>();
+        options.add("to do");
+        options.add("in bearbeitung");
+        options.add("testing");
+        options.add("fertig");
+
+        return ok(views.html.editTask.render(form,t,user,options));
     }
 }

@@ -29,6 +29,8 @@ public class Task extends Model {
     @Transient
     private String projecttmp;
 
+    private String status;
+
     public static Finder<Long,Task> find = new Finder<Long,Task>(Task.class);
 
 
@@ -94,5 +96,13 @@ public class Task extends Model {
 
     public void setProjecttmp(String projecttmp) {
         this.projecttmp = projecttmp;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

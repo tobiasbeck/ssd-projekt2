@@ -1,0 +1,33 @@
+@(form: Form[Task], task:Task, users:List[User],options:List[String])
+@main("Aufgabe"){
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Aufgabe bearbeiten</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12">
+        @helper.form(action = routes.TaskController.update(task.getId())){
+            @helper.inputText(form("title"),'_label ->"Titel", 'class -> "form-control")
+            @helper.inputText(form("description"),'_label ->"Beschreibung", 'class -> "form-control")
+            @helper.select(
+                field = form("assignedTotmp"),
+                options = (users.map(c => c.getId().toString() -> c.getName())),
+                'id -> "c",
+                '_label -> "Bearbeiter",
+                'class -> "form-control"
+            )
+            @helper.inputText(form("time"),'_label -> "Zeit (in min)", 'class -> "form-control")
+            @helper.select(
+                field = form("status"),
+                options = (options.map(c => c.toString() -> c.toString())),
+                '_label -> "Status",
+                'class -> "form-control"
+            )
+
+            <button type="submit" class="btn btn-success" value="Save" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Save </button>
+
+        }
+        </div>
+    </div>
+}
